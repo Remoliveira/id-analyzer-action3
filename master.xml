@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" url="master.zip">
+
+<unit revision="1.0.0" language="Java" filename="HouariZegai-Calculator-2a459a1/src/main/java/com/houarizegai/calculator/App.java" hash="ffe0333ca142f2ff5c2b66061be796ac7d9a0456"><package>package <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name></name>;</package>
+
+<import>import <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>ui</name><operator>.</operator><name>CalculatorUI</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>App</name> <block>{
+
+    <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name><name>String</name><index>[]</index></name></type> <name>args</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><operator>new</operator> <call><name>CalculatorUI</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+}</block></class>
+</unit>
+
+<unit revision="1.0.0" language="Java" filename="HouariZegai-Calculator-2a459a1/src/main/java/com/houarizegai/calculator/theme/ThemeLoader.java" hash="1b47225a7fd229231a3e4afa95700e61ad329e2c"><package>package <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>theme</name></name>;</package>
+
+<import>import <name><name>com</name><operator>.</operator><name>fasterxml</name><operator>.</operator><name>jackson</name><operator>.</operator><name>databind</name><operator>.</operator><name>ObjectMapper</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>fasterxml</name><operator>.</operator><name>jackson</name><operator>.</operator><name>dataformat</name><operator>.</operator><name>yaml</name><operator>.</operator><name>YAMLFactory</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>theme</name><operator>.</operator><name>properties</name><operator>.</operator><name>Theme</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>theme</name><operator>.</operator><name>properties</name><operator>.</operator><name>ThemeList</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>File</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>io</name><operator>.</operator><name>IOException</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>ThemeLoader</name> <block>{
+
+    <constructor><specifier>private</specifier> <name>ThemeLoader</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>AssertionError</name><argument_list>(<argument><expr><literal type="string">"Constructor is not allowed"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>public</specifier> <specifier>static</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Theme</name></argument>&gt;</argument_list></name></type> <name>loadThemes</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>ObjectMapper</name></type> <name>mapper</name> <init>= <expr><operator>new</operator> <call><name>ObjectMapper</name><argument_list>(<argument><expr><operator>new</operator> <call><name>YAMLFactory</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>mapper</name><operator>.</operator><name>findAndRegisterModules</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+        <try>try <block>{<block_content>
+            <decl_stmt><decl><type><name>ThemeList</name></type> <name>themeList</name> <init>= <expr><call><name><name>mapper</name><operator>.</operator><name>readValue</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>File</name><argument_list>(<argument><expr><literal type="string">"src/main/resources/application.yaml"</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name><name>ThemeList</name><operator>.</operator><name>class</name></name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+            <return>return <expr><call><name><name>themeList</name><operator>.</operator><name>getThemesAsMap</name></name><argument_list>()</argument_list></call></expr>;</return>
+        </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>IOException</name></type> <name>e</name></decl></parameter>)</parameter_list> <block>{<block_content>
+            <return>return <expr><call><name><name>Collections</name><operator>.</operator><name>emptyMap</name></name><argument_list>()</argument_list></call></expr>;</return>
+        </block_content>}</block></catch></try>
+    </block_content>}</block></function>
+}</block></class>
+</unit>
+
+<unit revision="1.0.0" language="Java" filename="HouariZegai-Calculator-2a459a1/src/main/java/com/houarizegai/calculator/theme/properties/Theme.java" hash="81ca7160af2eebceb3797e1893932edab09c183c"><package>package <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>theme</name><operator>.</operator><name>properties</name></name>;</package>
+
+<class><specifier>public</specifier> class <name>Theme</name> <block>{
+
+    <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>name</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>applicationBackground</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>textColor</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>btnEqualTextColor</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>operatorBackground</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>numbersBackground</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>String</name></type> <name>btnEqualBackground</name></decl>;</decl_stmt>
+
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getName</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>name</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setName</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>name</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>name</name></name> <operator>=</operator> <name>name</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getApplicationBackground</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>applicationBackground</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setApplicationBackground</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>applicationBackground</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>applicationBackground</name></name> <operator>=</operator> <name>applicationBackground</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getTextColor</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>textColor</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setTextColor</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>textColor</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>textColor</name></name> <operator>=</operator> <name>textColor</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getBtnEqualTextColor</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>btnEqualTextColor</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setBtnEqualTextColor</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>btnEqualTextColor</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>btnEqualTextColor</name></name> <operator>=</operator> <name>btnEqualTextColor</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getOperatorBackground</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>operatorBackground</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setOperatorBackground</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>operatorBackground</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>operatorBackground</name></name> <operator>=</operator> <name>operatorBackground</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getNumbersBackground</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>numbersBackground</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setNumbersBackground</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>numbersBackground</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>numbersBackground</name></name> <operator>=</operator> <name>numbersBackground</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>String</name></type> <name>getBtnEqualBackground</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>btnEqualBackground</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setBtnEqualBackground</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>btnEqualBackground</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>btnEqualBackground</name></name> <operator>=</operator> <name>btnEqualBackground</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+}</block></class>
+</unit>
+
+<unit revision="1.0.0" language="Java" filename="HouariZegai-Calculator-2a459a1/src/main/java/com/houarizegai/calculator/theme/properties/ThemeList.java" hash="c731dbf0e7ea2eb96e8c057522c91bb461a0475b"><package>package <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>theme</name><operator>.</operator><name>properties</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>function</name><operator>.</operator><name>Function</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>stream</name><operator>.</operator><name>Collectors</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>ThemeList</name> <block>{
+    <decl_stmt><decl><type><specifier>private</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>Theme</name></argument>&gt;</argument_list></name></type> <name>themes</name></decl>;</decl_stmt>
+
+    <function><type><specifier>public</specifier> <name><name>List</name><argument_list type="generic">&lt;<argument><name>Theme</name></argument>&gt;</argument_list></name></type> <name>getThemes</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><name>themes</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name>void</name></type> <name>setThemes</name><parameter_list>(<parameter><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Theme</name></argument>&gt;</argument_list></name></type> <name>themes</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name><name>this</name><operator>.</operator><name>themes</name></name> <operator>=</operator> <name>themes</name></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>public</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Theme</name></argument>&gt;</argument_list></name></type> <name>getThemesAsMap</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <return>return <expr><call><name><name>themes</name><operator>.</operator><name>stream</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>collect</name><argument_list>(<argument><expr><call><name><name>Collectors</name><operator>.</operator><name>toMap</name></name><argument_list>(<argument><expr><name>Theme</name><operator>::</operator><name>getName</name></expr></argument>, <argument><expr><call><name><name>Function</name><operator>.</operator><name>identity</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+}</block></class>
+</unit>
+
+<unit revision="1.0.0" language="Java" filename="HouariZegai-Calculator-2a459a1/src/main/java/com/houarizegai/calculator/ui/CalculatorUI.java" hash="dfba0874120f1e271c8af800087cf8efbea91109"><package>package <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>ui</name></name>;</package>
+
+<import>import <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>theme</name><operator>.</operator><name>properties</name><operator>.</operator><name>Theme</name></name>;</import>
+<import>import <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>theme</name><operator>.</operator><name>ThemeLoader</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>awt</name><operator>.</operator><name>Cursor</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>awt</name><operator>.</operator><name>Font</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>awt</name><operator>.</operator><name>event</name><operator>.</operator><name>ItemEvent</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Map</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>regex</name><operator>.</operator><name>Pattern</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>awt</name><operator>.</operator><name>Color</name></name>;</import>
+<import>import <name><name>javax</name><operator>.</operator><name>swing</name><operator>.</operator><name>*</name></name>;</import>
+
+<import>import static <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>util</name><operator>.</operator><name>ColorUtil</name><operator>.</operator><name>hex2Color</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>CalculatorUI</name> <block>{
+
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>FONT_NAME</name> <init>= <expr><literal type="string">"Comic Sans MS"</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>DOUBLE_OR_NUMBER_REGEX</name> <init>= <expr><literal type="string">"([-]?\\d+[.]\\d*)|(\\d+)|(-\\d+)"</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>String</name></type> <name>APPLICATION_TITLE</name> <init>= <expr><literal type="string">"Calculator"</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>WINDOW_WIDTH</name> <init>= <expr><literal type="number">410</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>WINDOW_HEIGHT</name> <init>= <expr><literal type="number">600</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>BUTTON_WIDTH</name> <init>= <expr><literal type="number">80</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>BUTTON_HEIGHT</name> <init>= <expr><literal type="number">70</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>MARGIN_X</name> <init>= <expr><literal type="number">20</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>static</specifier> <specifier>final</specifier> <name>int</name></type> <name>MARGIN_Y</name> <init>= <expr><literal type="number">60</literal></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name>JFrame</name></type> <name>window</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name><name>JComboBox</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>comboCalculatorType</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name><name>JComboBox</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>comboTheme</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JTextField</name></type> <name>inputScreen</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnC</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnBack</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnMod</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnDiv</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnMul</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnSub</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnAdd</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn0</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn1</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn2</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn3</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn4</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn5</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn6</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn7</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn8</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btn9</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnPoint</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnEqual</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnRoot</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnPower</name></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>JButton</name></type> <name>btnLog</name></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><specifier>private</specifier> <name>char</name></type> <name>selectedOperator</name> <init>= <expr><literal type="char">' '</literal></expr></init></decl>;</decl_stmt>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>boolean</name></type> <name>go</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt> <comment type="line">// For calculate with Opt != (=)</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>boolean</name></type> <name>addToDisplay</name> <init>= <expr><literal type="boolean">true</literal></expr></init></decl>;</decl_stmt> <comment type="line">// Connect numbers in display</comment>
+    <decl_stmt><decl><type><specifier>private</specifier> <name>double</name></type> <name>typedValue</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</decl_stmt>
+
+    <decl_stmt><decl><type><specifier>private</specifier> <specifier>final</specifier> <name><name>Map</name><argument_list type="generic">&lt;<argument><name>String</name></argument>, <argument><name>Theme</name></argument>&gt;</argument_list></name></type> <name>themesMap</name></decl>;</decl_stmt>
+
+    <constructor><specifier>public</specifier> <name>CalculatorUI</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name>themesMap</name> <operator>=</operator> <call><name><name>ThemeLoader</name><operator>.</operator><name>loadThemes</name></name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>window</name> <operator>=</operator> <operator>new</operator> <call><name>JFrame</name><argument_list>(<argument><expr><name>APPLICATION_TITLE</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>setSize</name></name><argument_list>(<argument><expr><name>WINDOW_WIDTH</name></expr></argument>, <argument><expr><name>WINDOW_HEIGHT</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>setLocationRelativeTo</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>columns</name> <init>= <expr><block>{<expr><name>MARGIN_X</name></expr>, <expr><name>MARGIN_X</name> <operator>+</operator> <literal type="number">90</literal></expr>, <expr><name>MARGIN_X</name> <operator>+</operator> <literal type="number">90</literal> <operator>*</operator> <literal type="number">2</literal></expr>, <expr><name>MARGIN_X</name> <operator>+</operator> <literal type="number">90</literal> <operator>*</operator> <literal type="number">3</literal></expr>, <expr><name>MARGIN_X</name> <operator>+</operator> <literal type="number">90</literal> <operator>*</operator> <literal type="number">4</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>rows</name> <init>= <expr><block>{<expr><name>MARGIN_Y</name></expr>, <expr><name>MARGIN_Y</name> <operator>+</operator> <literal type="number">100</literal></expr>, <expr><name>MARGIN_Y</name> <operator>+</operator> <literal type="number">100</literal> <operator>+</operator> <literal type="number">80</literal></expr>, <expr><name>MARGIN_Y</name> <operator>+</operator> <literal type="number">100</literal> <operator>+</operator> <literal type="number">80</literal> <operator>*</operator> <literal type="number">2</literal></expr>, <expr><name>MARGIN_Y</name> <operator>+</operator> <literal type="number">100</literal> <operator>+</operator> <literal type="number">80</literal> <operator>*</operator> <literal type="number">3</literal></expr>, <expr><name>MARGIN_Y</name> <operator>+</operator> <literal type="number">100</literal> <operator>+</operator> <literal type="number">80</literal> <operator>*</operator> <literal type="number">4</literal></expr>}</block></expr></init></decl>;</decl_stmt>
+
+        <expr_stmt><expr><call><name>initInputScreen</name><argument_list>(<argument><expr><name>columns</name></expr></argument>, <argument><expr><name>rows</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>initButtons</name><argument_list>(<argument><expr><name>columns</name></expr></argument>, <argument><expr><name>rows</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name>initCalculatorTypeSelector</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name>initThemeSelector</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>setLayout</name></name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>setResizable</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>setDefaultCloseOperation</name></name><argument_list>(<argument><expr><name><name>JFrame</name><operator>.</operator><name>EXIT_ON_CLOSE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>public</specifier> <name>double</name></type> <name>calculate</name><parameter_list>(<parameter><decl><type><name>double</name></type> <name>firstNumber</name></decl></parameter>, <parameter><decl><type><name>double</name></type> <name>secondNumber</name></decl></parameter>, <parameter><decl><type><name>char</name></type> <name>operator</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <switch>switch <condition>(<expr><name>operator</name></expr>)</condition> <block>{<block_content>
+            <case>case <expr><literal type="char">'+'</literal></expr>:</case>
+                <return>return <expr><name>firstNumber</name> <operator>+</operator> <name>secondNumber</name></expr>;</return>
+            <case>case <expr><literal type="char">'-'</literal></expr>:</case>
+                <return>return <expr><name>firstNumber</name> <operator>-</operator> <name>secondNumber</name></expr>;</return>
+            <case>case <expr><literal type="char">'*'</literal></expr>:</case>
+                <return>return <expr><name>firstNumber</name> <operator>*</operator> <name>secondNumber</name></expr>;</return>
+            <case>case <expr><literal type="char">'/'</literal></expr>:</case>
+                <return>return <expr><name>firstNumber</name> <operator>/</operator> <name>secondNumber</name></expr>;</return>
+            <case>case <expr><literal type="char">'%'</literal></expr>:</case>
+                <return>return <expr><name>firstNumber</name> <operator>%</operator> <name>secondNumber</name></expr>;</return>
+            <case>case <expr><literal type="char">'^'</literal></expr>:</case>
+                <return>return <expr><call><name><name>Math</name><operator>.</operator><name>pow</name></name><argument_list>(<argument><expr><name>firstNumber</name></expr></argument>, <argument><expr><name>secondNumber</name></expr></argument>)</argument_list></call></expr>;</return>
+            <default>default:</default>
+                <return>return <expr><name>secondNumber</name></expr>;</return>
+        </block_content>}</block></switch>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>initThemeSelector</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name>comboTheme</name> <operator>=</operator> <call><name>createComboBox</name><argument_list>(<argument><expr><call><name><name>themesMap</name><operator>.</operator><name>keySet</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>toArray</name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">230</literal></expr></argument>, <argument><expr><literal type="number">30</literal></expr></argument>, <argument><expr><literal type="string">"Theme"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>comboTheme</name><operator>.</operator><name>addItemListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><call><name><name>event</name><operator>.</operator><name>getStateChange</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>ItemEvent</name><operator>.</operator><name>SELECTED</name></name></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <decl_stmt><decl><type><name>String</name></type> <name>selectedTheme</name> <init>= <expr><operator>(</operator><name>String</name><operator>)</operator> <call><name><name>event</name><operator>.</operator><name>getItem</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <expr_stmt><expr><call><name>applyTheme</name><argument_list>(<argument><expr><call><name><name>themesMap</name><operator>.</operator><name>get</name></name><argument_list>(<argument><expr><name>selectedTheme</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <if_stmt><if>if <condition>(<expr><call><name><name>themesMap</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call><operator>.</operator><call><name>hasNext</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name>applyTheme</name><argument_list>(<argument><expr><call><name><name>themesMap</name><operator>.</operator><name>entrySet</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>iterator</name><argument_list>()</argument_list></call><operator>.</operator><call><name>next</name><argument_list>()</argument_list></call><operator>.</operator><call><name>getValue</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        </block_content>}</block></if></if_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>initInputScreen</name><parameter_list>(<parameter><decl><type><name><name>int</name><index>[]</index></name></type> <name>columns</name></decl></parameter>, <parameter><decl><type><name><name>int</name><index>[]</index></name></type> <name>rows</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name>inputScreen</name> <operator>=</operator> <operator>new</operator> <call><name>JTextField</name><argument_list>(<argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setBounds</name></name><argument_list>(<argument><expr><name><name>columns</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><literal type="number">350</literal></expr></argument>, <argument><expr><literal type="number">70</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setEditable</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><name><name>Color</name><operator>.</operator><name>WHITE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setFont</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Font</name><argument_list>(<argument><expr><name>FONT_NAME</name></expr></argument>, <argument><expr><name><name>Font</name><operator>.</operator><name>PLAIN</name></name></expr></argument>, <argument><expr><literal type="number">33</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>inputScreen</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>initCalculatorTypeSelector</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name>comboCalculatorType</name> <operator>=</operator> <call><name>createComboBox</name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[]</index></name><block>{<expr><literal type="string">"Standard"</literal></expr>, <expr><literal type="string">"Scientific"</literal></expr>}</block></expr></argument>, <argument><expr><literal type="number">20</literal></expr></argument>, <argument><expr><literal type="number">30</literal></expr></argument>, <argument><expr><literal type="string">"Calculator type"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>comboCalculatorType</name><operator>.</operator><name>addItemListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><call><name><name>event</name><operator>.</operator><name>getStateChange</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <name><name>ItemEvent</name><operator>.</operator><name>SELECTED</name></name></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <decl_stmt><decl><type><name>String</name></type> <name>selectedItem</name> <init>= <expr><operator>(</operator><name>String</name><operator>)</operator> <call><name><name>event</name><operator>.</operator><name>getItem</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <switch>switch <condition>(<expr><name>selectedItem</name></expr>)</condition> <block>{<block_content>
+                <case>case <expr><literal type="string">"Standard"</literal></expr>:</case>
+                    <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>setSize</name></name><argument_list>(<argument><expr><name>WINDOW_WIDTH</name></expr></argument>, <argument><expr><name>WINDOW_HEIGHT</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>btnRoot</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>btnPower</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>btnLog</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <break>break;</break>
+                <case>case <expr><literal type="string">"Scientific"</literal></expr>:</case>
+                    <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>setSize</name></name><argument_list>(<argument><expr><name>WINDOW_WIDTH</name> <operator>+</operator> <literal type="number">80</literal></expr></argument>, <argument><expr><name>WINDOW_HEIGHT</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>btnRoot</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>btnPower</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <expr_stmt><expr><call><name><name>btnLog</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                    <break>break;</break>
+            </block_content>}</block></switch>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>initButtons</name><parameter_list>(<parameter><decl><type><name><name>int</name><index>[]</index></name></type> <name>columns</name></decl></parameter>, <parameter><decl><type><name><name>int</name><index>[]</index></name></type> <name>rows</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name>btnC</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"C"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnC</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">' '</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <literal type="number">0</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnBack</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"&lt;-"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnBack</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <decl_stmt><decl><type><name>String</name></type> <name>str</name> <init>= <expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <decl_stmt><decl><type><name>StringBuilder</name></type> <name>str2</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+            <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <operator>(</operator><call><name><name>str</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>-</operator> <literal type="number">1</literal><operator>)</operator></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>str2</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><call><name><name>str</name><operator>.</operator><name>charAt</name></name><argument_list>(<argument><expr><name>i</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></for>
+            <if_stmt><if>if <condition>(<expr><call><name><name>str2</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>equals</name><argument_list>(<argument><expr><literal type="string">""</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>str2</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnMod</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"%"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnMod</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><name>DOUBLE_OR_NUMBER_REGEX</name></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call> <operator>||</operator> <operator>!</operator><name>go</name></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <call><name>calculate</name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>, <argument><expr><call><name><name>Double</name><operator>.</operator><name>parseDouble</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>selectedOperator</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[-]?[\\d]+[.][0]*"</literal></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'%'</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnDiv</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"/"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnDiv</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><name>DOUBLE_OR_NUMBER_REGEX</name></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>go</name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <call><name>calculate</name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>, <argument><expr><call><name><name>Double</name><operator>.</operator><name>parseDouble</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>selectedOperator</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[-]?[\\d]+[.][0]*"</literal></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'/'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'/'</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn7</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"7"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn7</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"7"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"7"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"7"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn8</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"8"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn8</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"8"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"8"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"8"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn9</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"9"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn9</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"9"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"9"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"9"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnMul</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"*"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnMul</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><name>DOUBLE_OR_NUMBER_REGEX</name></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>go</name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <call><name>calculate</name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>, <argument><expr><call><name><name>Double</name><operator>.</operator><name>parseDouble</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>selectedOperator</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[-]?[\\d]+[.][0]*"</literal></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'*'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'*'</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn4</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"4"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn4</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"4"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"4"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"4"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn5</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"5"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn5</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"5"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"5"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"5"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn6</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"6"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn6</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"6"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"6"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"6"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnSub</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"-"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnSub</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><name>DOUBLE_OR_NUMBER_REGEX</name></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>go</name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <call><name>calculate</name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>, <argument><expr><call><name><name>Double</name><operator>.</operator><name>parseDouble</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>selectedOperator</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[-]?[\\d]+[.][0]*"</literal></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'-'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'-'</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn1</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"1"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">4</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn1</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn2</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"2"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">4</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn2</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"2"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"2"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"2"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn3</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"3"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">4</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn3</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"3"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"3"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"3"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnAdd</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"+"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">4</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnAdd</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><name>DOUBLE_OR_NUMBER_REGEX</name></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>go</name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <call><name>calculate</name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>, <argument><expr><call><name><name>Double</name><operator>.</operator><name>parseDouble</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>selectedOperator</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[-]?[\\d]+[.][0]*"</literal></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'+'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'+'</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnPoint</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"."</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">5</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnPoint</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>contains</name><argument_list>(<argument><expr><literal type="string">"."</literal></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"0."</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btn0</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"0"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">5</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn0</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><name>addToDisplay</name></expr>)</condition> <block>{<block_content>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[0]*"</literal></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><literal type="string">"0"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+            <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">true</literal></expr>;</expr_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnEqual</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"="</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">5</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnEqual</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><name>DOUBLE_OR_NUMBER_REGEX</name></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>go</name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <call><name>calculate</name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>, <argument><expr><call><name><name>Double</name><operator>.</operator><name>parseDouble</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>selectedOperator</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[-]?[\\d]+[.][0]*"</literal></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'='</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnEqual</name><operator>.</operator><name>setSize</name></name><argument_list>(<argument><expr><literal type="number">2</literal> <operator>*</operator> <name>BUTTON_WIDTH</name> <operator>+</operator> <literal type="number">10</literal></expr></argument>, <argument><expr><name>BUTTON_HEIGHT</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnRoot</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"â"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">4</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnRoot</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><name>DOUBLE_OR_NUMBER_REGEX</name></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>go</name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <call><name><name>Math</name><operator>.</operator><name>sqrt</name></name><argument_list>(<argument><expr><call><name><name>Double</name><operator>.</operator><name>parseDouble</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[-]?[\\d]+[.][0]*"</literal></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'â'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnRoot</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnPower</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"pow"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">4</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">2</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnPower</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><name>DOUBLE_OR_NUMBER_REGEX</name></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>go</name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <call><name>calculate</name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>, <argument><expr><call><name><name>Double</name><operator>.</operator><name>parseDouble</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><name>selectedOperator</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[-]?[\\d]+[.][0]*"</literal></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'^'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>go</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            </block_content>}</block></if> <else>else <block>{<block_content>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'^'</literal></expr>;</expr_stmt>
+            </block_content>}</block></else></if_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnPower</name><operator>.</operator><name>setFont</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Font</name><argument_list>(<argument><expr><literal type="string">"Comic Sans MS"</literal></expr></argument>, <argument><expr><name><name>Font</name><operator>.</operator><name>PLAIN</name></name></expr></argument>, <argument><expr><literal type="number">24</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnPower</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><name>btnLog</name> <operator>=</operator> <call><name>createButton</name><argument_list>(<argument><expr><literal type="string">"ln"</literal></expr></argument>, <argument><expr><name><name>columns</name><index>[<expr><literal type="number">4</literal></expr>]</index></name></expr></argument>, <argument><expr><name><name>rows</name><index>[<expr><literal type="number">3</literal></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnLog</name><operator>.</operator><name>addActionListener</name></name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>event</name></decl></parameter></parameter_list> -&gt; <block>{<block_content>
+            <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><name>DOUBLE_OR_NUMBER_REGEX</name></expr></argument>, <argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition><block type="pseudo"><block_content>
+                <return>return;</return></block_content></block></if></if_stmt>
+
+            <if_stmt><if>if <condition>(<expr><name>go</name></expr>)</condition> <block>{<block_content>
+                <expr_stmt><expr><name>typedValue</name> <operator>=</operator> <call><name><name>Math</name><operator>.</operator><name>log</name></name><argument_list>(<argument><expr><call><name><name>Double</name><operator>.</operator><name>parseDouble</name></name><argument_list>(<argument><expr><call><name><name>inputScreen</name><operator>.</operator><name>getText</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                <if_stmt><if>if <condition>(<expr><call><name><name>Pattern</name><operator>.</operator><name>matches</name></name><argument_list>(<argument><expr><literal type="string">"[-]?[\\d]+[.][0]*"</literal></expr></argument>, <argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>)</condition> <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><operator>(</operator><name>int</name><operator>)</operator> <name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></if> <else>else <block>{<block_content>
+                    <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setText</name></name><argument_list>(<argument><expr><call><name><name>String</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><name>typedValue</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+                </block_content>}</block></else></if_stmt>
+                <expr_stmt><expr><name>selectedOperator</name> <operator>=</operator> <literal type="char">'l'</literal></expr>;</expr_stmt>
+                <expr_stmt><expr><name>addToDisplay</name> <operator>=</operator> <literal type="boolean">false</literal></expr>;</expr_stmt>
+            </block_content>}</block></if></if_stmt>
+        </block_content>}</block></lambda></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnLog</name><operator>.</operator><name>setVisible</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name><name>JComboBox</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>createComboBox</name><parameter_list>(<parameter><decl><type><name><name>String</name><index>[]</index></name></type> <name>items</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>, <parameter><decl><type><name>String</name></type> <name>toolTip</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name><name>JComboBox</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>combo</name> <init>= <expr><operator>new</operator> <call><name><name>JComboBox</name><argument_list type="generic">&lt;&gt;</argument_list></name><argument_list>(<argument><expr><name>items</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>combo</name><operator>.</operator><name>setBounds</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><literal type="number">140</literal></expr></argument>, <argument><expr><literal type="number">25</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>combo</name><operator>.</operator><name>setToolTipText</name></name><argument_list>(<argument><expr><name>toolTip</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>combo</name><operator>.</operator><name>setCursor</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Cursor</name><argument_list>(<argument><expr><name><name>Cursor</name><operator>.</operator><name>HAND_CURSOR</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>combo</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <return>return <expr><name>combo</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name>JButton</name></type> <name>createButton</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>label</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>x</name></decl></parameter>, <parameter><decl><type><name>int</name></type> <name>y</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <decl_stmt><decl><type><name>JButton</name></type> <name>btn</name> <init>= <expr><operator>new</operator> <call><name>JButton</name><argument_list>(<argument><expr><name>label</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>btn</name><operator>.</operator><name>setBounds</name></name><argument_list>(<argument><expr><name>x</name></expr></argument>, <argument><expr><name>y</name></expr></argument>, <argument><expr><name>BUTTON_WIDTH</name></expr></argument>, <argument><expr><name>BUTTON_HEIGHT</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn</name><operator>.</operator><name>setFont</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Font</name><argument_list>(<argument><expr><literal type="string">"Comic Sans MS"</literal></expr></argument>, <argument><expr><name><name>Font</name><operator>.</operator><name>PLAIN</name></name></expr></argument>, <argument><expr><literal type="number">28</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn</name><operator>.</operator><name>setCursor</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Cursor</name><argument_list>(<argument><expr><name><name>Cursor</name><operator>.</operator><name>HAND_CURSOR</name></name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn</name><operator>.</operator><name>setFocusable</name></name><argument_list>(<argument><expr><literal type="boolean">false</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><name>btn</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <return>return <expr><name>btn</name></expr>;</return>
+    </block_content>}</block></function>
+
+    <function><type><specifier>private</specifier> <name>void</name></type> <name>applyTheme</name><parameter_list>(<parameter><decl><type><name>Theme</name></type> <name>theme</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><call><name><name>window</name><operator>.</operator><name>getContentPane</name></name><argument_list>()</argument_list></call><operator>.</operator><call><name>setBackground</name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getApplicationBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name><name>comboCalculatorType</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>comboTheme</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn0</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn1</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn2</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn3</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn4</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn5</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn6</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn7</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn8</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn9</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnPoint</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnC</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnBack</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnMod</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnDiv</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnMul</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnSub</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnAdd</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnRoot</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnLog</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnPower</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnEqual</name><operator>.</operator><name>setForeground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getBtnEqualTextColor</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+        <expr_stmt><expr><call><name><name>comboCalculatorType</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getApplicationBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>comboTheme</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getApplicationBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>inputScreen</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getApplicationBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn0</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn1</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn2</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn3</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn4</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn5</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn6</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn7</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn8</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btn9</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnPoint</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getNumbersBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnC</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnBack</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnMod</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnDiv</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnMul</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnSub</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnAdd</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnRoot</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnLog</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnPower</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getOperatorBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <expr_stmt><expr><call><name><name>btnEqual</name><operator>.</operator><name>setBackground</name></name><argument_list>(<argument><expr><call><name>hex2Color</name><argument_list>(<argument><expr><call><name><name>theme</name><operator>.</operator><name>getBtnEqualBackground</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+}</block></class></unit>
+
+<unit revision="1.0.0" language="Java" filename="HouariZegai-Calculator-2a459a1/src/main/java/com/houarizegai/calculator/util/ColorUtil.java" hash="6a75ad7e53b30a023283b32e927de5b56a735fb2"><package>package <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>util</name></name>;</package>
+
+<import>import <name><name>java</name><operator>.</operator><name>awt</name><operator>.</operator><name>*</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Optional</name></name>;</import>
+
+<class><specifier>public</specifier> class <name>ColorUtil</name> <block>{
+
+    <constructor><specifier>private</specifier> <name>ColorUtil</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <throw>throw <expr><operator>new</operator> <call><name>AssertionError</name><argument_list>(<argument><expr><literal type="string">"Constructor is not allowed"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></constructor>
+
+    <function><type><specifier>public</specifier> <specifier>static</specifier> <name>Color</name></type> <name>hex2Color</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>colorHex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <return>return <expr><call><name><name>Optional</name><operator>.</operator><name>ofNullable</name></name><argument_list>(<argument><expr><name>colorHex</name></expr></argument>)</argument_list></call>
+                <operator>.</operator><call><name>map</name><argument_list>(<argument><expr><lambda><parameter_list type="pseudo"><parameter><decl><name>hex</name></decl></parameter></parameter_list> -&gt;<block type="pseudo"><block_content> <expr><operator>new</operator> <call><name>Color</name><argument_list>(
+                        <argument><expr><call><name><name>Integer</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><call><name><name>colorHex</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="number">2</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr></argument>,
+                        <argument><expr><call><name><name>Integer</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><call><name><name>colorHex</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">2</literal></expr></argument>, <argument><expr><literal type="number">4</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr></argument>,
+                        <argument><expr><call><name><name>Integer</name><operator>.</operator><name>valueOf</name></name><argument_list>(<argument><expr><call><name><name>colorHex</name><operator>.</operator><name>substring</name></name><argument_list>(<argument><expr><literal type="number">4</literal></expr></argument>, <argument><expr><literal type="number">6</literal></expr></argument>)</argument_list></call></expr></argument>, <argument><expr><literal type="number">16</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr></block_content></block></lambda></expr></argument>)</argument_list></call>
+                <operator>.</operator><call><name>orElse</name><argument_list>(<argument><expr><literal type="null">null</literal></expr></argument>)</argument_list></call></expr>;</return>
+    </block_content>}</block></function>
+}</block></class>
+</unit>
+
+<unit revision="1.0.0" language="Java" filename="HouariZegai-Calculator-2a459a1/src/test/java/com/houarizegai/calculator/CalculatorUITest.java" hash="6eef7d6adc6bc3cc618cae0d08289256027e1d57"><package>package <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name></name>;</package>
+
+<import>import <name><name>com</name><operator>.</operator><name>houarizegai</name><operator>.</operator><name>calculator</name><operator>.</operator><name>ui</name><operator>.</operator><name>CalculatorUI</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>jupiter</name><operator>.</operator><name>api</name><operator>.</operator><name>BeforeEach</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>jupiter</name><operator>.</operator><name>params</name><operator>.</operator><name>ParameterizedTest</name></name>;</import>
+<import>import <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>jupiter</name><operator>.</operator><name>params</name><operator>.</operator><name>provider</name><operator>.</operator><name>CsvSource</name></name>;</import>
+
+<import>import static <name><name>org</name><operator>.</operator><name>junit</name><operator>.</operator><name>jupiter</name><operator>.</operator><name>api</name><operator>.</operator><name>Assertions</name><operator>.</operator><name>assertEquals</name></name>;</import>
+
+<class>class <name>CalculatorUITest</name> <block>{
+
+    <decl_stmt><decl><type><specifier>private</specifier> <name>CalculatorUI</name></type> <name>calculatorUI</name></decl>;</decl_stmt>
+
+    <function><annotation>@<name>BeforeEach</name></annotation>
+    <type><name>void</name></type> <name>setUp</name><parameter_list>()</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><name>calculatorUI</name> <operator>=</operator> <operator>new</operator> <call><name>CalculatorUI</name><argument_list>()</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+
+    <function><annotation>@<name>ParameterizedTest</name></annotation>
+    <annotation>@<name>CsvSource</name><argument_list>(<argument><expr><block>{<expr><literal type="string">"3,5,+,8"</literal></expr>, <argument><expr><literal type="string">"2,8,-,-6"</literal></expr></argument>, <argument><expr><literal type="string">"44.5,10,*,445"</literal></expr></argument>, <argument><expr><literal type="string">"320,5,/,64"</literal></expr></argument>, <argument><expr><literal type="string">"3,5,%,3"</literal></expr></argument>, <argument><expr><literal type="string">"5,3,^,125"</literal></expr></argument>}</block></expr></argument>)</argument_list></annotation>
+    <type><name>void</name></type> <name>testCalculation</name><parameter_list>(<parameter><decl><type><name>double</name></type> <name>firstNumber</name></decl></parameter>, <parameter><decl><type><name>double</name></type> <name>secondNumber</name></decl></parameter>, <parameter><decl><type><name>char</name></type> <name>operator</name></decl></parameter>, <parameter><decl><type><name>double</name></type> <name>expectedResult</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <expr_stmt><expr><call><name>assertEquals</name><argument_list>(<argument><expr><name>expectedResult</name></expr></argument>, <argument><expr><call><name><name>calculatorUI</name><operator>.</operator><name>calculate</name></name><argument_list>(<argument><expr><name>firstNumber</name></expr></argument>, <argument><expr><name>secondNumber</name></expr></argument>, <argument><expr><name>operator</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></function>
+}</block></class>
+</unit>
+
+</unit>

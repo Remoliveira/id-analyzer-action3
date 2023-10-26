@@ -1,0 +1,59 @@
+Identificador,Tipo,Categoria,Posicao,Projeto
+ mapper ,ObjectMapper,10,Variavel,projeto
+ themeList ,ThemeList,6,Variavel,projeto
+ name,String,10,Atributo,projeto
+ applicationBackground,String,6,Atributo,projeto
+ textColor,String,6,Atributo,projeto
+ btnEqualTextColor,String,7,Atributo,projeto
+ operatorBackground,String,6,Atributo,projeto
+ numbersBackground,String,6,Atributo,projeto
+ btnEqualBackground,String,7,Atributo,projeto
+ themes,Theme,10,Atributo,projeto
+ FONT_NAME ,String,8,Atributo,projeto
+ DOUBLE_OR_NUMBER_REGEX ,String,8,Atributo,projeto
+ APPLICATION_TITLE ,String,8,Atributo,projeto
+ WINDOW_WIDTH ,int,8,Atributo,projeto
+ WINDOW_HEIGHT ,int,8,Atributo,projeto
+ BUTTON_WIDTH ,int,8,Atributo,projeto
+ BUTTON_HEIGHT ,int,8,Atributo,projeto
+ MARGIN_X ,int,8,Atributo,projeto
+ MARGIN_Y ,int,8,Atributo,projeto
+ window,JFrame,10,Atributo,projeto
+ comboCalculatorType,String,7,Atributo,projeto
+ comboTheme,String,6,Atributo,projeto
+ inputScreen,JTextField,6,Atributo,projeto
+ btnC,JButton,6,Atributo,projeto
+ btnBack,JButton,6,Atributo,projeto
+ btnMod,JButton,6,Atributo,projeto
+ btnDiv,JButton,6,Atributo,projeto
+ btnMul,JButton,6,Atributo,projeto
+ btnSub,JButton,6,Atributo,projeto
+ btnAdd,JButton,6,Atributo,projeto
+ btn0,JButton,1,Atributo,projeto
+ btn1,JButton,1,Atributo,projeto
+ btn2,JButton,1,Atributo,projeto
+ btn3,JButton,1,Atributo,projeto
+ btn4,JButton,1,Atributo,projeto
+ btn5,JButton,1,Atributo,projeto
+ btn6,JButton,1,Atributo,projeto
+ btn7,JButton,1,Atributo,projeto
+ btn8,JButton,1,Atributo,projeto
+ btn9,JButton,1,Atributo,projeto
+ btnPoint,JButton,6,Atributo,projeto
+ btnEqual,JButton,6,Atributo,projeto
+ btnRoot,JButton,6,Atributo,projeto
+ btnPower,JButton,6,Atributo,projeto
+ btnLog,JButton,6,Atributo,projeto
+ selectedOperator ,char,6,Atributo,projeto
+ go ,boolean,10,Atributo,projeto
+ addToDisplay ,boolean,7,Atributo,projeto
+ typedValue ,double,6,Atributo,projeto
+ columns ,int,10,Atributo,projeto
+ rows ,int,10,Atributo,projeto
+ selectedTheme ,String,6,Variavel,projeto
+ selectedItem ,String,6,Variavel,projeto
+ str ,String,10,Variavel,projeto
+ str2 ,StringBuilder,10,Variavel,projeto
+ combo ,String,10,Variavel,projeto
+ btn ,JButton,10,Variavel,projeto
+ calculatorUI,CalculatorUI,5,Atributo,projeto

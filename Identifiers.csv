@@ -1,0 +1,67 @@
+nome,tipo,posicao,arquivo,nomeClasse,nomeMetodo
+ mapper ,ObjectMapper,Variavel,master.xml,ThemeLoader,"loadThemes
+"
+ themeList ,ThemeList,Variavel,master.xml,ThemeLoader,"loadThemes
+"
+ name,String,Atributo,master.xml,Theme,
+ applicationBackground,String,Atributo,master.xml,Theme,
+ textColor,String,Atributo,master.xml,Theme,
+ btnEqualTextColor,String,Atributo,master.xml,Theme,
+ operatorBackground,String,Atributo,master.xml,Theme,
+ numbersBackground,String,Atributo,master.xml,Theme,
+ btnEqualBackground,String,Atributo,master.xml,Theme,
+ themes,Theme,Atributo,master.xml,ThemeList,
+ FONT_NAME ,String,Atributo,master.xml,CalculatorUI,
+ DOUBLE_OR_NUMBER_REGEX ,String,Atributo,master.xml,CalculatorUI,
+ APPLICATION_TITLE ,String,Atributo,master.xml,CalculatorUI,
+ WINDOW_WIDTH ,int,Atributo,master.xml,CalculatorUI,
+ WINDOW_HEIGHT ,int,Atributo,master.xml,CalculatorUI,
+ BUTTON_WIDTH ,int,Atributo,master.xml,CalculatorUI,
+ BUTTON_HEIGHT ,int,Atributo,master.xml,CalculatorUI,
+ MARGIN_X ,int,Atributo,master.xml,CalculatorUI,
+ MARGIN_Y ,int,Atributo,master.xml,CalculatorUI,
+ window,JFrame,Atributo,master.xml,CalculatorUI,
+ comboCalculatorType,String,Atributo,master.xml,CalculatorUI,
+ comboTheme,String,Atributo,master.xml,CalculatorUI,
+ inputScreen,JTextField,Atributo,master.xml,CalculatorUI,
+ btnC,JButton,Atributo,master.xml,CalculatorUI,
+ btnBack,JButton,Atributo,master.xml,CalculatorUI,
+ btnMod,JButton,Atributo,master.xml,CalculatorUI,
+ btnDiv,JButton,Atributo,master.xml,CalculatorUI,
+ btnMul,JButton,Atributo,master.xml,CalculatorUI,
+ btnSub,JButton,Atributo,master.xml,CalculatorUI,
+ btnAdd,JButton,Atributo,master.xml,CalculatorUI,
+ btn0,JButton,Atributo,master.xml,CalculatorUI,
+ btn1,JButton,Atributo,master.xml,CalculatorUI,
+ btn2,JButton,Atributo,master.xml,CalculatorUI,
+ btn3,JButton,Atributo,master.xml,CalculatorUI,
+ btn4,JButton,Atributo,master.xml,CalculatorUI,
+ btn5,JButton,Atributo,master.xml,CalculatorUI,
+ btn6,JButton,Atributo,master.xml,CalculatorUI,
+ btn7,JButton,Atributo,master.xml,CalculatorUI,
+ btn8,JButton,Atributo,master.xml,CalculatorUI,
+ btn9,JButton,Atributo,master.xml,CalculatorUI,
+ btnPoint,JButton,Atributo,master.xml,CalculatorUI,
+ btnEqual,JButton,Atributo,master.xml,CalculatorUI,
+ btnRoot,JButton,Atributo,master.xml,CalculatorUI,
+ btnPower,JButton,Atributo,master.xml,CalculatorUI,
+ btnLog,JButton,Atributo,master.xml,CalculatorUI,
+ selectedOperator ,char,Atributo,master.xml,CalculatorUI,
+ go ,boolean,Atributo,master.xml,CalculatorUI,
+ addToDisplay ,boolean,Atributo,master.xml,CalculatorUI,
+ typedValue ,double,Atributo,master.xml,CalculatorUI,
+ columns ,int,Atributo,master.xml,CalculatorUI,
+ rows ,int,Atributo,master.xml,CalculatorUI,
+ selectedTheme ,String,Variavel,master.xml,CalculatorUI,"initThemeSelector
+"
+ selectedItem ,String,Variavel,master.xml,CalculatorUI,"initCalculatorTypeSelector
+"
+ str ,String,Variavel,master.xml,CalculatorUI,"initButtons
+"
+ str2 ,StringBuilder,Variavel,master.xml,CalculatorUI,"initButtons
+"
+ combo ,String,Variavel,master.xml,CalculatorUI,"createComboBox
+"
+ btn ,JButton,Variavel,master.xml,CalculatorUI,"createButton
+"
+ calculatorUI,CalculatorUI,Atributo,master.xml,CalculatorUITest,

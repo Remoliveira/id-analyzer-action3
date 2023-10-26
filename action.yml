@@ -1,19 +1,20 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
-
-# Define your inputs here.
+name: 'id-analyzer-action'
+description: 'Analyze the quality of your identifiers'
+author: 'Remo Gresta'
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  repo:
     required: true
-    default: '1000'
-
-# Define your outputs here.
+    description: 'name of the repository'
+  owner:
+    required: true
+    description: 'owner of the repository'
+  branch:
+    required: false
+    description: 'branch of the repository'
+    default: 'master'
 outputs:
-  time:
-    description: 'Your output description here'
-
+  out:
+    description: 'Test'
 runs:
   using: node20
   main: dist/index.js
