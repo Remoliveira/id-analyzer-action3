@@ -9,7 +9,7 @@ export async function run(): Promise<void> {
   try {
     console.log('herew')
 
-    let repo = core.getInput('repoName')
+    let repo = core.getInput('repo')
     let owner = core.getInput('owner')
     let branch = core.getInput('branch')
 
