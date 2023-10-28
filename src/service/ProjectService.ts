@@ -25,7 +25,7 @@ class ProjectsService {
   constructor(private algorithmsService: AlgorithmsService) {}
   async storeProject(projectDto: ProjectsDTO): Promise<any> {
     this.algorithmsService = new AlgorithmsService()
-
+    console.log('antes', projectDto)
     const file = await this.downloadFiles(projectDto)
     console.log('file?', file)
     const zipFile = 'master.zip'
@@ -56,6 +56,9 @@ class ProjectsService {
       const octokit = new Octokit({
         auth: process.env.GITHUB_TOKEN
       })
+      console.log('dto', projectDto)
+      console.log('3')
+      console.log(projectDto.repo)
       const file = await octokit.request(
         `GET /repos/{owner}/{repo}/zipball/{ref}`,
         {
