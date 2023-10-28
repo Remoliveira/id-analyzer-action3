@@ -27,9 +27,9 @@ class ProjectsService {
     this.algorithmsService = new AlgorithmsService()
     console.log('antes', projectDto)
     const file = await this.downloadFiles(projectDto)
-    console.log('file?', file)
+    console.log('filed?', file)
     const zipFile = 'master.zip'
-    console.log('file url?', file.url)
+    console.log('filed url?', file.url)
     const fileUrl = file.url
 
     await this.writeCsvToMaster(fileUrl, zipFile)
