@@ -1,5 +1,5 @@
 name: 'id-analyzer-action'
-description: 'Analyze the quality of your identifiers'
+description: 'Analyze the quality of your identifiers for sure'
 author: 'Remo Gresta'
 inputs:
   repo:

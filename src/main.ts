@@ -7,7 +7,7 @@ const projectService = new ProjectsService(algorithmsService)
 
 export async function run(): Promise<void> {
   try {
-    console.log('herew')
+    console.log('Here we are')
 
     let repo = core.getInput('repo')
     let owner = core.getInput('owner')
