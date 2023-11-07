@@ -53890,6 +53890,7 @@ class ProjectsService {
         const fileUrl = file.url;
         await this.writeCsvToMaster(fileUrl, zipFile);
         await this.downloadSrcml();
+        await this.installSrcml();
         await this.convertToSrcml();
         await this.extractIdentifiers();
         await this.downloadDependencies();
@@ -53967,6 +53968,10 @@ class ProjectsService {
                 });
                 response();
             }, 6000);
+        });
+    }
+    async installSrcml() {
+        return new Promise(async (response) => {
             setTimeout(() => {
                 (0, child_process_1.exec)('dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
                     if (error) {

@@ -35,6 +35,7 @@ class ProjectsService {
     await this.writeCsvToMaster(fileUrl, zipFile)
 
     await this.downloadSrcml()
+    await this.installSrcml()
 
     await this.convertToSrcml()
 
@@ -134,7 +135,11 @@ class ProjectsService {
         )
         response()
       }, 6000)
+    })
+  }
 
+  private async installSrcml(): Promise<void> {
+    return new Promise(async response => {
       setTimeout(() => {
         exec('dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
           if (error) {
