@@ -134,7 +134,7 @@ class ProjectsService {
           }
         )
         response()
-      }, 6000)
+      }, 10000)
     })
   }
 
@@ -143,7 +143,7 @@ class ProjectsService {
 
     return new Promise(async response => {
       setTimeout(() => {
-        exec('dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
+        exec('sudo dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
           if (error) {
             console.log(error)
             process.exit(1)
