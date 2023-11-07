@@ -136,12 +136,12 @@ class ProjectsService {
       }, 6000)
 
       setTimeout(() => {
-        exec('sudo dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
+        exec('dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
           if (error) {
             console.log(error)
             process.exit(1)
           } else {
-            console.log('Download srcml done')
+            console.log('Install srcml done')
           }
         })
         response()
