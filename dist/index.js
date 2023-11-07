@@ -53889,6 +53889,7 @@ class ProjectsService {
         console.log('filed url?', file.url);
         const fileUrl = file.url;
         await this.writeCsvToMaster(fileUrl, zipFile);
+        await this.downloadSrcml();
         await this.convertToSrcml();
         await this.extractIdentifiers();
         await this.downloadDependencies();
@@ -53952,7 +53953,7 @@ class ProjectsService {
         const result = await this.algorithmsService.setPhoneticJson();
         return result;
     }
-    async downloadoSrcml() {
+    async downloadSrcml() {
         return new Promise(async (response) => {
             setTimeout(() => {
                 (0, child_process_1.exec)('wget http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb', error => {

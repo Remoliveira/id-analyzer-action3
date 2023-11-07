@@ -34,6 +34,8 @@ class ProjectsService {
 
     await this.writeCsvToMaster(fileUrl, zipFile)
 
+    await this.downloadSrcml()
+
     await this.convertToSrcml()
 
     await this.extractIdentifiers()
@@ -116,7 +118,7 @@ class ProjectsService {
     return result
   }
 
-  private async downloadoSrcml(): Promise<void> {
+  private async downloadSrcml(): Promise<void> {
     return new Promise(async response => {
       setTimeout(() => {
         exec(
