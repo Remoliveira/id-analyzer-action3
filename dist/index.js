@@ -53971,6 +53971,7 @@ class ProjectsService {
         });
     }
     async installSrcml() {
+        console.log('installsrcml');
         return new Promise(async (response) => {
             setTimeout(() => {
                 (0, child_process_1.exec)('dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {

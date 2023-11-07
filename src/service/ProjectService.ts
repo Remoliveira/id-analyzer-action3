@@ -139,6 +139,8 @@ class ProjectsService {
   }
 
   private async installSrcml(): Promise<void> {
+    console.log('installsrcml')
+
     return new Promise(async response => {
       setTimeout(() => {
         exec('dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
