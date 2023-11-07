@@ -53968,13 +53968,13 @@ class ProjectsService {
                 response();
             }, 6000);
             setTimeout(() => {
-                (0, child_process_1.exec)('sudo dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
+                (0, child_process_1.exec)('dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
                     if (error) {
                         console.log(error);
                         process.exit(1);
                     }
                     else {
-                        console.log('Download srcml done');
+                        console.log('Install srcml done');
                     }
                 });
                 response();
