@@ -53902,6 +53902,7 @@ class ProjectsService {
                     console.log(stdout, '<<== output');
                 }
             });
+            1000;
         });
         //estamos aqui
         await this.extractIdentifiers();
