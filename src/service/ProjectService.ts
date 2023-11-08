@@ -23,8 +23,10 @@ interface ProjectResponse {
 
 class ProjectsService {
   constructor(private algorithmsService: AlgorithmsService) {}
+
   async storeProject(projectDto: ProjectsDTO): Promise<any> {
     this.algorithmsService = new AlgorithmsService()
+
     console.log('antes', projectDto)
     const file = await this.downloadFiles(projectDto)
     console.log('filed?', file)
@@ -39,6 +41,18 @@ class ProjectsService {
 
     await this.convertToSrcml()
 
+    setTimeout(async () => {
+      exec('pwd', (error, stdout) => {
+        if (error) {
+          console.log(error)
+          process.exit(1)
+        } else {
+          console.log(stdout, '<<== output')
+        }
+      })
+    })
+
+    //estamos aqui
     await this.extractIdentifiers()
 
     await this.downloadDependencies()
@@ -175,7 +189,7 @@ class ProjectsService {
   private async extractIdentifiers(): Promise<void> {
     return new Promise(async response => {
       setTimeout(() => {
-        PythonShell.run('Java.py').then(messages => {
+        PythonShell.run('src/algorithms/Java.py').then(messages => {
           console.log(messages, 'extract identifiers finished')
         })
 

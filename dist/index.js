@@ -53892,6 +53892,18 @@ class ProjectsService {
         await this.downloadSrcml();
         await this.installSrcml();
         await this.convertToSrcml();
+        setTimeout(async () => {
+            (0, child_process_1.exec)('pwd', (error, stdout) => {
+                if (error) {
+                    console.log(error);
+                    process.exit(1);
+                }
+                else {
+                    console.log(stdout, '<<== output');
+                }
+            });
+        });
+        //estamos aqui
         await this.extractIdentifiers();
         await this.downloadDependencies();
         await this.applyCategory();
@@ -54006,7 +54018,7 @@ class ProjectsService {
     async extractIdentifiers() {
         return new Promise(async (response) => {
             setTimeout(() => {
-                python_shell_1.PythonShell.run('Java.py').then(messages => {
+                python_shell_1.PythonShell.run('src/algorithms/Java.py').then(messages => {
                     console.log(messages, 'extract identifiers finished');
                 });
                 response();
