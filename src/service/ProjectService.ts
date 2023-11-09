@@ -201,11 +201,11 @@ class ProjectsService {
   private async extractIdentifiers(repo: string): Promise<void> {
     return new Promise(async response => {
       setTimeout(() => {
-        PythonShell.run(`/home/runner/work/${repo}/${repo}/Java.py`).then(
-          messages => {
-            console.log(messages, 'extract identifiers finished')
-          }
-        )
+        PythonShell.run(
+          `/home/runner/work/_actions/Remoliveira/id-analyzer-action3/v000/dist/Java.py`
+        ).then(messages => {
+          console.log(messages, 'extract identifiers finished')
+        })
 
         response()
       }, 2000)

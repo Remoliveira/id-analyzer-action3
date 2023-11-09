@@ -54031,7 +54031,7 @@ class ProjectsService {
     async extractIdentifiers(repo) {
         return new Promise(async (response) => {
             setTimeout(() => {
-                python_shell_1.PythonShell.run(`/home/runner/work/${repo}/${repo}/Java.py`).then(messages => {
+                python_shell_1.PythonShell.run(`/home/runner/work/_actions/Remoliveira/id-analyzer-action3/v000/dist/Java.py`).then(messages => {
                     console.log(messages, 'extract identifiers finished');
                 });
                 response();
