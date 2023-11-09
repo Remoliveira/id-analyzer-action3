@@ -53905,7 +53905,7 @@ class ProjectsService {
             1000;
         });
         //estamos aqui
-        await this.extractIdentifiers();
+        await this.extractIdentifiers(projectDto.repo);
         await this.downloadDependencies();
         await this.applyCategory();
         // MUDAR ISSO \/
@@ -54016,10 +54016,10 @@ class ProjectsService {
             }, 2000);
         });
     }
-    async extractIdentifiers() {
+    async extractIdentifiers(repo) {
         return new Promise(async (response) => {
             setTimeout(() => {
-                python_shell_1.PythonShell.run('src/algorithms/Java.py').then(messages => {
+                python_shell_1.PythonShell.run(`/home/runner/work/${repo}/${repo}/src/algorithms/Java.py`).then(messages => {
                     console.log(messages, 'extract identifiers finished');
                 });
                 response();

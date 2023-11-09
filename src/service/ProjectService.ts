@@ -54,7 +54,7 @@ class ProjectsService {
     })
 
     //estamos aqui
-    await this.extractIdentifiers()
+    await this.extractIdentifiers(projectDto.repo)
 
     await this.downloadDependencies()
 
@@ -187,10 +187,12 @@ class ProjectsService {
     })
   }
 
-  private async extractIdentifiers(): Promise<void> {
+  private async extractIdentifiers(repo: string): Promise<void> {
     return new Promise(async response => {
       setTimeout(() => {
-        PythonShell.run('src/algorithms/Java.py').then(messages => {
+        PythonShell.run(
+          `/home/runner/work/${repo}/${repo}/src/algorithms/Java.py`
+        ).then(messages => {
           console.log(messages, 'extract identifiers finished')
         })
 
