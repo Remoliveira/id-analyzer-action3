@@ -53784,7 +53784,7 @@ exports.AlgorithmsService = void 0;
 const python_shell_1 = __nccwpck_require__(2586);
 const csvtojson_1 = __importDefault(__nccwpck_require__(1865));
 class AlgorithmsService {
-    async downloadDependencies() {
+    async downloadDependencies(tag) {
         var packages = ['pandas', 'gensim.downloader'];
         // var package_name = 'pandas'
         let options = {
@@ -53792,17 +53792,17 @@ class AlgorithmsService {
         };
         return new Promise(async (response) => {
             setTimeout(() => {
-                python_shell_1.PythonShell.run('src/algorithms/install_package.py', options).then(messages => {
+                python_shell_1.PythonShell.run(`/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/install_package.py`, options).then(messages => {
                     console.log(messages, ' download dependencies finished');
                 });
                 response();
             }, 2000);
         });
     }
-    async applyCategoryAlgorithm() {
+    async applyCategoryAlgorithm(tag) {
         return new Promise(async (response) => {
             setTimeout(() => {
-                python_shell_1.PythonShell.run('src/algorithms/categoriesAlgorithm/CategoryCatch.py').then(messages => {
+                python_shell_1.PythonShell.run(`/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/algorithms/CategoryCatch.py`).then(messages => {
                     console.log(messages, ' apply categories finished');
                 });
                 response();
@@ -53916,10 +53916,11 @@ class ProjectsService {
             });
             1000;
         });
+        const tag = 'v00';
         //estamos aqui
-        await this.extractIdentifiers(projectDto.repo);
-        await this.downloadDependencies();
-        await this.applyCategory();
+        await this.extractIdentifiers(tag);
+        await this.downloadDependencies(tag);
+        await this.applyCategory(tag);
         // MUDAR ISSO \/
         // await this.applyWord2vec()
         setTimeout(async () => {
@@ -53960,13 +53961,13 @@ class ProjectsService {
             }, 2000);
         });
     }
-    async downloadDependencies() {
-        await this.algorithmsService.downloadDependencies();
+    async downloadDependencies(tag) {
+        await this.algorithmsService.downloadDependencies(tag);
         console.log('dependencias baixadas');
     }
-    async applyCategory() {
+    async applyCategory(tag) {
         console.log('Aplicando algoritmo categorias');
-        await this.algorithmsService.applyCategoryAlgorithm();
+        await this.algorithmsService.applyCategoryAlgorithm(tag);
     }
     async applyWord2vec() {
         await this.algorithmsService.applyWordEmbeddingAlgorithm();
@@ -54028,10 +54029,10 @@ class ProjectsService {
             }, 2000);
         });
     }
-    async extractIdentifiers(repo) {
+    async extractIdentifiers(tag) {
         return new Promise(async (response) => {
             setTimeout(() => {
-                python_shell_1.PythonShell.run(`/home/runner/work/_actions/Remoliveira/id-analyzer-action3/v000/dist/Java.py`).then(messages => {
+                python_shell_1.PythonShell.run(`/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/Java.py`).then(messages => {
                     console.log(messages, 'extract identifiers finished');
                 });
                 response();

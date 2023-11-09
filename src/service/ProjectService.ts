@@ -64,12 +64,13 @@ class ProjectsService {
       1000
     })
 
+    const tag = 'v00'
     //estamos aqui
-    await this.extractIdentifiers(projectDto.repo)
+    await this.extractIdentifiers(tag)
 
-    await this.downloadDependencies()
+    await this.downloadDependencies(tag)
 
-    await this.applyCategory()
+    await this.applyCategory(tag)
 
     // MUDAR ISSO \/
     // await this.applyWord2vec()
@@ -121,14 +122,14 @@ class ProjectsService {
     })
   }
 
-  private async downloadDependencies() {
-    await this.algorithmsService.downloadDependencies()
+  private async downloadDependencies(tag: string) {
+    await this.algorithmsService.downloadDependencies(tag)
     console.log('dependencias baixadas')
   }
 
-  private async applyCategory() {
+  private async applyCategory(tag: string) {
     console.log('Aplicando algoritmo categorias')
-    await this.algorithmsService.applyCategoryAlgorithm()
+    await this.algorithmsService.applyCategoryAlgorithm(tag)
   }
 
   private async applyWord2vec() {
@@ -198,11 +199,11 @@ class ProjectsService {
     })
   }
 
-  private async extractIdentifiers(repo: string): Promise<void> {
+  private async extractIdentifiers(tag: string): Promise<void> {
     return new Promise(async response => {
       setTimeout(() => {
         PythonShell.run(
-          `/home/runner/work/_actions/Remoliveira/id-analyzer-action3/v000/dist/Java.py`
+          `/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/Java.py`
         ).then(messages => {
           console.log(messages, 'extract identifiers finished')
         })

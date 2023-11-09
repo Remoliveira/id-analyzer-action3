@@ -4,7 +4,7 @@ import { PythonShell } from 'python-shell'
 import csv2json from 'csvtojson'
 
 class AlgorithmsService {
-  async downloadDependencies(): Promise<void> {
+  async downloadDependencies(tag: string): Promise<void> {
     var packages = ['pandas', 'gensim.downloader']
     // var package_name = 'pandas'
     let options = {
@@ -13,22 +13,23 @@ class AlgorithmsService {
 
     return new Promise(async response => {
       setTimeout(() => {
-        PythonShell.run('src/algorithms/install_package.py', options).then(
-          messages => {
-            console.log(messages, ' download dependencies finished')
-          }
-        )
+        PythonShell.run(
+          `/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/install_package.py`,
+          options
+        ).then(messages => {
+          console.log(messages, ' download dependencies finished')
+        })
 
         response()
       }, 2000)
     })
   }
 
-  async applyCategoryAlgorithm(): Promise<void> {
+  async applyCategoryAlgorithm(tag: string): Promise<void> {
     return new Promise(async response => {
       setTimeout(() => {
         PythonShell.run(
-          'src/algorithms/categoriesAlgorithm/CategoryCatch.py'
+          `/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/algorithms/CategoryCatch.py`
         ).then(messages => {
           console.log(messages, ' apply categories finished')
         })
