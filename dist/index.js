@@ -53904,6 +53904,18 @@ class ProjectsService {
             });
             1000;
         });
+        setTimeout(async () => {
+            (0, child_process_1.exec)('ls', (error, stdout) => {
+                if (error) {
+                    console.log(error);
+                    process.exit(1);
+                }
+                else {
+                    console.log(stdout, '<<== output');
+                }
+            });
+            1000;
+        });
         //estamos aqui
         await this.extractIdentifiers(projectDto.repo);
         await this.downloadDependencies();
@@ -54019,7 +54031,7 @@ class ProjectsService {
     async extractIdentifiers(repo) {
         return new Promise(async (response) => {
             setTimeout(() => {
-                python_shell_1.PythonShell.run(`/home/runner/work/${repo}/${repo}/src/algorithms/Java.py`).then(messages => {
+                python_shell_1.PythonShell.run(`/home/runner/work/${repo}/${repo}/Java.py`).then(messages => {
                     console.log(messages, 'extract identifiers finished');
                 });
                 response();

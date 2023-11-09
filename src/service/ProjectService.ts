@@ -52,6 +52,17 @@ class ProjectsService {
       })
       1000
     })
+    setTimeout(async () => {
+      exec('ls', (error, stdout) => {
+        if (error) {
+          console.log(error)
+          process.exit(1)
+        } else {
+          console.log(stdout, '<<== output')
+        }
+      })
+      1000
+    })
 
     //estamos aqui
     await this.extractIdentifiers(projectDto.repo)
@@ -190,11 +201,11 @@ class ProjectsService {
   private async extractIdentifiers(repo: string): Promise<void> {
     return new Promise(async response => {
       setTimeout(() => {
-        PythonShell.run(
-          `/home/runner/work/${repo}/${repo}/src/algorithms/Java.py`
-        ).then(messages => {
-          console.log(messages, 'extract identifiers finished')
-        })
+        PythonShell.run(`/home/runner/work/${repo}/${repo}/Java.py`).then(
+          messages => {
+            console.log(messages, 'extract identifiers finished')
+          }
+        )
 
         response()
       }, 2000)
