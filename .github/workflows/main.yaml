@@ -18,6 +18,10 @@ jobs:
         with:
           python-version: 3.8
 
+      - name: Ioi
+        run: |
+          ls
+
       - name: Instalação de Dependências Python
         run: |
           pip install -r /home/runner/work/_actions/Remoliveira/id-analyzer-action3/requirements.txt
