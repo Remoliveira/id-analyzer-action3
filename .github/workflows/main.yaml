@@ -24,4 +24,4 @@ jobs:
 
       - name: Instalação de Dependências Python
         run: |
-          pip install -r /home/runner/work/_actions/Remoliveira/id-analyzer-action3/requirements.txt
+          pip install -r requirements.txt
