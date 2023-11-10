@@ -54039,7 +54039,7 @@ class ProjectsService {
         console.log('installsrcml');
         return new Promise(async (response) => {
             setTimeout(() => {
-                (0, child_process_1.exec)('pip3 -m install pandas', error => {
+                (0, child_process_1.exec)('python3 -m pip install pandas', error => {
                     if (error) {
                         console.log(error);
                         process.exit(1);

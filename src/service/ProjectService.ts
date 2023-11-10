@@ -218,7 +218,7 @@ class ProjectsService {
 
     return new Promise(async response => {
       setTimeout(() => {
-        exec('pip3 -m install pandas', error => {
+        exec('python3 -m pip install pandas', error => {
           if (error) {
             console.log(error)
             process.exit(1)
