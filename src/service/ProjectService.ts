@@ -64,11 +64,12 @@ class ProjectsService {
       1000
     })
 
-    const tag = 'v00'
+    const tag = '000v'
 
     await this.extractIdentifiers(tag)
     //estamos aqui
-    await this.downloadDependencies(tag)
+    // await this.downloadDependencies(tag)
+    await this.installPythonDependencies()
 
     await this.applyCategory(tag)
 
@@ -209,6 +210,35 @@ class ProjectsService {
 
         response()
       }, 2000)
+    })
+  }
+
+  private async installPythonDependencies(): Promise<void> {
+    console.log('installsrcml')
+
+    return new Promise(async response => {
+      setTimeout(() => {
+        exec('pip3 -m install pandas', error => {
+          if (error) {
+            console.log(error)
+            process.exit(1)
+          } else {
+            console.log('Install srcml done')
+          }
+        })
+        response()
+      }, 8000)
+      // setTimeout(() => {
+      //   exec('pip3 -m install gensin.downloader', error => {
+      //     if (error) {
+      //       console.log(error)
+      //       process.exit(1)
+      //     } else {
+      //       console.log('Install srcml done')
+      //     }
+      //   })
+      //   response()
+      // }, 8000)
     })
   }
 }

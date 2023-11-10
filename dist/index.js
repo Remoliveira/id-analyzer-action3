@@ -53912,10 +53912,11 @@ class ProjectsService {
             });
             1000;
         });
-        const tag = 'v00';
+        const tag = '000v';
         await this.extractIdentifiers(tag);
         //estamos aqui
-        await this.downloadDependencies(tag);
+        // await this.downloadDependencies(tag)
+        await this.installPythonDependencies();
         await this.applyCategory(tag);
         // MUDAR ISSO \/
         // await this.applyWord2vec()
@@ -54032,6 +54033,34 @@ class ProjectsService {
                 });
                 response();
             }, 2000);
+        });
+    }
+    async installPythonDependencies() {
+        console.log('installsrcml');
+        return new Promise(async (response) => {
+            setTimeout(() => {
+                (0, child_process_1.exec)('pip3 -m install pandas', error => {
+                    if (error) {
+                        console.log(error);
+                        process.exit(1);
+                    }
+                    else {
+                        console.log('Install srcml done');
+                    }
+                });
+                response();
+            }, 8000);
+            // setTimeout(() => {
+            //   exec('pip3 -m install gensin.downloader', error => {
+            //     if (error) {
+            //       console.log(error)
+            //       process.exit(1)
+            //     } else {
+            //       console.log('Install srcml done')
+            //     }
+            //   })
+            //   response()
+            // }, 8000)
         });
     }
 }
