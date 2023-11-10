@@ -70,9 +70,9 @@ class ProjectsService {
     //estamos aqui
     // await this.downloadDependencies(tag)
 
-    setTimeout(async () => {
-      await this.installPythonDependencies()
-    }, 10000)
+    // setTimeout(async () => {
+    //   await this.installPythonDependencies()
+    // }, 10000)
 
     await this.applyCategory(tag)
 

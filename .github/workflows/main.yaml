@@ -1,0 +1,23 @@
+name: Install packages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v2
+
+      - name: Configuração do Python e Instalação de Dependências
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Instalação de Dependências Python
+        run: |
+          pip install pandas
