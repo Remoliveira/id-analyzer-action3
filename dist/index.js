@@ -54036,7 +54036,7 @@ class ProjectsService {
         });
     }
     async installPythonDependencies() {
-        console.log('installsrcml');
+        console.log('install pandas');
         return new Promise(async (response) => {
             setTimeout(() => {
                 (0, child_process_1.exec)('pip install pandas', error => {
@@ -54045,11 +54045,11 @@ class ProjectsService {
                         process.exit(1);
                     }
                     else {
-                        console.log('Install srcml done');
+                        console.log('Install pandas done');
                     }
                 });
                 response();
-            }, 8000);
+            }, 10000);
             // setTimeout(() => {
             //   exec('pip3 -m install gensin.downloader', error => {
             //     if (error) {
