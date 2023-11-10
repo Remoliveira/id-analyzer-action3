@@ -1,2 +1,2 @@
 pandas
-gensim.downloader
+gensim
