@@ -53916,7 +53916,9 @@ class ProjectsService {
         await this.extractIdentifiers(tag);
         //estamos aqui
         // await this.downloadDependencies(tag)
-        await this.installPythonDependencies();
+        setTimeout(async () => {
+            await this.installPythonDependencies();
+        }, 10000);
         await this.applyCategory(tag);
         // MUDAR ISSO \/
         // await this.applyWord2vec()
