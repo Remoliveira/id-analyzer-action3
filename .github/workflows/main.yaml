@@ -25,3 +25,7 @@ jobs:
       - name: Instalação de Dependências Python
         run: |
           pip install -r requirements.txt
+
+      - name: Verificar dependências instaladas
+        run: |
+          ls -l
