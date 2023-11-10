@@ -2,6 +2,7 @@
 /* eslint-disable filenames/match-regex */
 import { PythonShell } from 'python-shell'
 import csv2json from 'csvtojson'
+import { exec } from 'child_process'
 
 class AlgorithmsService {
   async downloadDependencies(tag: string): Promise<void> {
@@ -27,15 +28,27 @@ class AlgorithmsService {
 
   async applyCategoryAlgorithm(tag: string): Promise<void> {
     return new Promise(async response => {
-      setTimeout(() => {
-        PythonShell.run(
-          `/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/algorithms/CategoryCatch.py`
-        ).then(messages => {
-          console.log(messages, ' apply categories finished')
-        })
+      // setTimeout(() => {
+      //   PythonShell.run(
+      //     `/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/algorithms/CategoryCatch.py`
+      //   ).then(messages => {
+      //     console.log(messages, ' apply categories finished')
+      //   })
 
+      //   response()
+      // }, 2000)
+
+      setTimeout(() => {
+        exec('python dist/algorithms/CategoryCatch.py', error => {
+          if (error) {
+            console.log(error)
+            process.exit(1)
+          } else {
+            console.log('Install pandas done')
+          }
+        })
         response()
-      }, 2000)
+      }, 10000)
     })
   }
 

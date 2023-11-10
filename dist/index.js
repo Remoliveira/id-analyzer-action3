@@ -53779,6 +53779,7 @@ exports.AlgorithmsService = void 0;
 /* eslint-disable filenames/match-regex */
 const python_shell_1 = __nccwpck_require__(2586);
 const csvtojson_1 = __importDefault(__nccwpck_require__(1865));
+const child_process_1 = __nccwpck_require__(2081);
 class AlgorithmsService {
     async downloadDependencies(tag) {
         var packages = ['pandas', 'gensim.downloader'];
@@ -53797,12 +53798,26 @@ class AlgorithmsService {
     }
     async applyCategoryAlgorithm(tag) {
         return new Promise(async (response) => {
+            // setTimeout(() => {
+            //   PythonShell.run(
+            //     `/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/algorithms/CategoryCatch.py`
+            //   ).then(messages => {
+            //     console.log(messages, ' apply categories finished')
+            //   })
+            //   response()
+            // }, 2000)
             setTimeout(() => {
-                python_shell_1.PythonShell.run(`/home/runner/work/_actions/Remoliveira/id-analyzer-action3/${tag}/dist/algorithms/CategoryCatch.py`).then(messages => {
-                    console.log(messages, ' apply categories finished');
+                (0, child_process_1.exec)('python dist/algorithms/CategoryCatch.py', error => {
+                    if (error) {
+                        console.log(error);
+                        process.exit(1);
+                    }
+                    else {
+                        console.log('Install pandas done');
+                    }
                 });
                 response();
-            }, 2000);
+            }, 10000);
         });
     }
     async applyWordEmbeddingAlgorithm() {
