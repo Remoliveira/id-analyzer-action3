@@ -53752,10 +53752,6 @@ async function run() {
         let repo = core.getInput('repo');
         let owner = core.getInput('owner');
         let branch = core.getInput('branch');
-        console.log('2');
-        console.log('repo, ', repo);
-        console.log('owner, ', owner);
-        console.log('branch, ', branch);
         await projectService.storeProject({ repo, owner, branch });
     }
     catch (error) {
@@ -53917,8 +53913,8 @@ class ProjectsService {
             1000;
         });
         const tag = 'v00';
-        //estamos aqui
         await this.extractIdentifiers(tag);
+        //estamos aqui
         await this.downloadDependencies(tag);
         await this.applyCategory(tag);
         // MUDAR ISSO \/
@@ -53963,7 +53959,6 @@ class ProjectsService {
     }
     async downloadDependencies(tag) {
         await this.algorithmsService.downloadDependencies(tag);
-        console.log('dependencias baixadas');
     }
     async applyCategory(tag) {
         console.log('Aplicando algoritmo categorias');

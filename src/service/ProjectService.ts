@@ -65,9 +65,9 @@ class ProjectsService {
     })
 
     const tag = 'v00'
-    //estamos aqui
-    await this.extractIdentifiers(tag)
 
+    await this.extractIdentifiers(tag)
+    //estamos aqui
     await this.downloadDependencies(tag)
 
     await this.applyCategory(tag)
@@ -122,12 +122,11 @@ class ProjectsService {
     })
   }
 
-  private async downloadDependencies(tag: string) {
+  private async downloadDependencies(tag: string): Promise<void> {
     await this.algorithmsService.downloadDependencies(tag)
-    console.log('dependencias baixadas')
   }
 
-  private async applyCategory(tag: string) {
+  private async applyCategory(tag: string): Promise<void> {
     console.log('Aplicando algoritmo categorias')
     await this.algorithmsService.applyCategoryAlgorithm(tag)
   }

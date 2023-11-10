@@ -12,10 +12,6 @@ export async function run(): Promise<void> {
     let repo = core.getInput('repo')
     let owner = core.getInput('owner')
     let branch = core.getInput('branch')
-    console.log('2')
-    console.log('repo, ', repo)
-    console.log('owner, ', owner)
-    console.log('branch, ', branch)
 
     await projectService.storeProject({ repo, owner, branch })
   } catch (error) {
