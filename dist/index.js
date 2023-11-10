@@ -53817,7 +53817,7 @@ class AlgorithmsService {
                     }
                 });
                 response();
-            }, 10000);
+            }, 1000);
         });
     }
     async applyWordEmbeddingAlgorithm() {
