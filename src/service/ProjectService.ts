@@ -3,10 +3,10 @@
 /* eslint-disable filenames/match-regex */
 
 import { ProjectsDTO } from './dto'
-// import { exec } from 'child_process'
+import { exec } from 'child_process'
 import csv2json from 'csvtojson'
 import 'dotenv/config'
-import { exec } from '@actions/exec'
+import { exec as actionExec } from '@actions/exec'
 import { Octokit } from '@octokit/rest'
 import * as request from 'superagent'
 
@@ -37,11 +37,9 @@ class ProjectsService {
     // await this.downloadSrcml()
     // await this.installSrcml()
 
-    await exec('ls')
-    await exec('srcml --verbose master.zip -o master.xml')
-    // await this.convertToSrcml()
+    await this.convertToSrcml()
 
-    const tag = '000w'
+    const tag = '000i'
 
     await this.extractIdentifiers(tag)
 
@@ -163,21 +161,21 @@ class ProjectsService {
   //   })
   // }
 
-  // private async convertToSrcml(): Promise<void> {
-  //   return new Promise(async response => {
-  //     setTimeout(() => {
-  //       exec('srcml --verbose master.zip -o master.xml', error => {
-  //         if (error) {
-  //           console.log(error)
-  //           process.exit(1)
-  //         } else {
-  //           console.log('Convert do srcml done')
-  //         }
-  //       })
-  //       response()
-  //     }, 2000)
-  //   })
-  // }
+  private async convertToSrcml(): Promise<void> {
+    return new Promise(async response => {
+      setTimeout(() => {
+        exec('srcml --verbose master.zip -o master.xml', error => {
+          if (error) {
+            console.log(error)
+            process.exit(1)
+          } else {
+            console.log('Convert do srcml done')
+          }
+        })
+        response()
+      }, 2000)
+    })
+  }
 
   private async extractIdentifiers(tag: string): Promise<void> {
     return new Promise(async response => {
