@@ -53893,11 +53893,8 @@ class ProjectsService {
     }
     async storeProject(projectDto) {
         this.algorithmsService = new AlgorithmService_1.AlgorithmsService();
-        console.log('antes', projectDto);
         const file = await this.downloadFiles(projectDto);
-        console.log('filed?', file);
         const zipFile = 'master.zip';
-        console.log('filed url?', file.url);
         const fileUrl = file.url;
         await this.writeCsvToMaster(fileUrl, zipFile);
         // await this.downloadSrcml()
@@ -54010,7 +54007,7 @@ class ProjectsService {
         });
     }
     async installSrcml() {
-        console.log('installsrcml');
+        console.log('not installsrcml');
         return new Promise(async (response) => {
             setTimeout(() => {
                 (0, child_process_1.exec)('sudo dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
