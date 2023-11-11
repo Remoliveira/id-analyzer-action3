@@ -37,6 +37,7 @@ class ProjectsService {
     // await this.downloadSrcml()
     // await this.installSrcml()
 
+    await exec('ls')
     await exec('srcml --verbose master.zip -o master.xml')
     // await this.convertToSrcml()
 

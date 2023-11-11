@@ -55130,6 +55130,7 @@ class ProjectsService {
         await this.writeCsvToMaster(fileUrl, zipFile);
         // await this.downloadSrcml()
         // await this.installSrcml()
+        await (0, exec_1.exec)('ls');
         await (0, exec_1.exec)('srcml --verbose master.zip -o master.xml');
         // await this.convertToSrcml()
         const tag = '000w';
