@@ -3,10 +3,10 @@
 /* eslint-disable filenames/match-regex */
 
 import { ProjectsDTO } from './dto'
-import { exec } from 'child_process'
+// import { exec } from 'child_process'
 import csv2json from 'csvtojson'
 import 'dotenv/config'
-
+import { exec } from '@actions/exec'
 import { Octokit } from '@octokit/rest'
 import * as request from 'superagent'
 
@@ -37,35 +37,13 @@ class ProjectsService {
     // await this.downloadSrcml()
     // await this.installSrcml()
 
-    await this.convertToSrcml()
+    await exec('srcml --verbose master.zip -o master.xml')
+    // await this.convertToSrcml()
 
-    setTimeout(async () => {
-      exec('pwd', (error, stdout) => {
-        if (error) {
-          console.log(error)
-          process.exit(1)
-        } else {
-          console.log(stdout, '<<== output')
-        }
-      })
-      1000
-    })
-    setTimeout(async () => {
-      exec('ls', (error, stdout) => {
-        if (error) {
-          console.log(error)
-          process.exit(1)
-        } else {
-          console.log(stdout, '<<== output')
-        }
-      })
-      1000
-    })
-
-    const tag = '000v'
+    const tag = '000w'
 
     await this.extractIdentifiers(tag)
-    //estamos aqui
+
     // await this.downloadDependencies(tag)
 
     // setTimeout(async () => {
@@ -147,58 +125,58 @@ class ProjectsService {
     return result
   }
 
-  private async downloadSrcml(): Promise<void> {
-    return new Promise(async response => {
-      setTimeout(() => {
-        exec(
-          'wget http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb',
-          error => {
-            if (error) {
-              console.log(error)
-              process.exit(1)
-            } else {
-              console.log('Download srcml done')
-            }
-          }
-        )
-        response()
-      }, 10000)
-    })
-  }
+  // private async downloadSrcml(): Promise<void> {
+  //   return new Promise(async response => {
+  //     setTimeout(() => {
+  //       exec(
+  //         'wget http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb',
+  //         error => {
+  //           if (error) {
+  //             console.log(error)
+  //             process.exit(1)
+  //           } else {
+  //             console.log('Download srcml done')
+  //           }
+  //         }
+  //       )
+  //       response()
+  //     }, 10000)
+  //   })
+  // }
 
-  private async installSrcml(): Promise<void> {
-    console.log('not installsrcml')
+  // private async installSrcml(): Promise<void> {
+  //   console.log('not installsrcml')
 
-    return new Promise(async response => {
-      setTimeout(() => {
-        exec('sudo dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
-          if (error) {
-            console.log(error)
-            process.exit(1)
-          } else {
-            console.log('Install srcml done')
-          }
-        })
-        response()
-      }, 8000)
-    })
-  }
+  //   return new Promise(async response => {
+  //     setTimeout(() => {
+  //       exec('sudo dpkg -i srcml_1.0.0-1_ubuntu20.04.deb', error => {
+  //         if (error) {
+  //           console.log(error)
+  //           process.exit(1)
+  //         } else {
+  //           console.log('Install srcml done')
+  //         }
+  //       })
+  //       response()
+  //     }, 8000)
+  //   })
+  // }
 
-  private async convertToSrcml(): Promise<void> {
-    return new Promise(async response => {
-      setTimeout(() => {
-        exec('srcml --verbose master.zip -o master.xml', error => {
-          if (error) {
-            console.log(error)
-            process.exit(1)
-          } else {
-            console.log('Convert do srcml done')
-          }
-        })
-        response()
-      }, 2000)
-    })
-  }
+  // private async convertToSrcml(): Promise<void> {
+  //   return new Promise(async response => {
+  //     setTimeout(() => {
+  //       exec('srcml --verbose master.zip -o master.xml', error => {
+  //         if (error) {
+  //           console.log(error)
+  //           process.exit(1)
+  //         } else {
+  //           console.log('Convert do srcml done')
+  //         }
+  //       })
+  //       response()
+  //     }, 2000)
+  //   })
+  // }
 
   private async extractIdentifiers(tag: string): Promise<void> {
     return new Promise(async response => {
@@ -214,34 +192,34 @@ class ProjectsService {
     })
   }
 
-  private async installPythonDependencies(): Promise<void> {
-    console.log('install pandas')
+  //   private async installPythonDependencies(): Promise<void> {
+  //     console.log('install pandas')
 
-    return new Promise(async response => {
-      setTimeout(() => {
-        exec('pip install pandas', error => {
-          if (error) {
-            console.log(error)
-            process.exit(1)
-          } else {
-            console.log('Install pandas done')
-          }
-        })
-        response()
-      }, 10000)
-      // setTimeout(() => {
-      //   exec('pip3 -m install gensin.downloader', error => {
-      //     if (error) {
-      //       console.log(error)
-      //       process.exit(1)
-      //     } else {
-      //       console.log('Install srcml done')
-      //     }
-      //   })
-      //   response()
-      // }, 8000)
-    })
-  }
+  //     // return new Promise(async response => {
+  //     //   setTimeout(() => {
+  //     //     exec('pip install pandas', error => {
+  //     //       if (error) {
+  //     //         console.log(error)
+  //     //         process.exit(1)
+  //     //       } else {
+  //     //         console.log('Install pandas done')
+  //     //       }
+  //     //     })
+  //     //     response()
+  //     //   }, 10000)
+  //       // setTimeout(() => {
+  //       //   exec('pip3 -m install gensin.downloader', error => {
+  //       //     if (error) {
+  //       //       console.log(error)
+  //       //       process.exit(1)
+  //       //     } else {
+  //       //       console.log('Install srcml done')
+  //       //     }
+  //       //   })
+  //       //   response()
+  //       // }, 8000)
+  //     })
+  //   }
 }
 
 export { ProjectsService }

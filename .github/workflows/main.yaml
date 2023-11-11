@@ -18,22 +18,22 @@ jobs:
         run: |
           sudo dpkg -i srcml_1.0.0-1_ubuntu20.04.deb
 
-      # - name: Checkout do repositório
-      #   uses: actions/checkout@v4
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
 
       - name: Configuração do Python e Instalação de Dependências
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.10
 
       - name: Ioi
         run: |
           ls
 
-      # - name: Instalação de Dependências Python
-      #   run: |
-      #     pip install -r requirements.txt
+      - name: Instalação de Dependências Python
+        run: |
+          pip install -r requirements.txt
 
-      # - name: Verificar dependências instaladas
-      #   run: |
-      #     pip show pandas
+      - name: Verificar dependências instaladas
+        run: |
+          pip show pandas
