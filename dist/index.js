@@ -53900,8 +53900,8 @@ class ProjectsService {
         console.log('filed url?', file.url);
         const fileUrl = file.url;
         await this.writeCsvToMaster(fileUrl, zipFile);
-        await this.downloadSrcml();
-        await this.installSrcml();
+        // await this.downloadSrcml()
+        // await this.installSrcml()
         await this.convertToSrcml();
         setTimeout(async () => {
             (0, child_process_1.exec)('pwd', (error, stdout) => {

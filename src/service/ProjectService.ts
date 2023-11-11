@@ -36,8 +36,8 @@ class ProjectsService {
 
     await this.writeCsvToMaster(fileUrl, zipFile)
 
-    await this.downloadSrcml()
-    await this.installSrcml()
+    // await this.downloadSrcml()
+    // await this.installSrcml()
 
     await this.convertToSrcml()
 

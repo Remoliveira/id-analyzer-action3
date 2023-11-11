@@ -10,6 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Download Srcml
+        run: |
+          wget http://131.123.42.38/lmcrs/v1.0.0/srcml_1.0.0-1_ubuntu20.04.deb
+
+      - name: Install Srcml
+        run: |
+          sudo dpkg -i srcml_1.0.0-1_ubuntu20.04.deb
+
       - name: Checkout do repositório
         uses: actions/checkout@v2
 
