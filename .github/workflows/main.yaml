@@ -18,8 +18,8 @@ jobs:
         run: |
           sudo dpkg -i srcml_1.0.0-1_ubuntu20.04.deb
 
-      - name: Checkout do repositório
-        uses: actions/checkout@v2
+      # - name: Checkout do repositório
+      #   uses: actions/checkout@v4
 
       - name: Configuração do Python e Instalação de Dependências
         uses: actions/setup-python@v2

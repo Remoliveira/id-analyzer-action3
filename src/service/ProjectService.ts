@@ -27,11 +27,9 @@ class ProjectsService {
   async storeProject(projectDto: ProjectsDTO): Promise<any> {
     this.algorithmsService = new AlgorithmsService()
 
-    console.log('antes', projectDto)
     const file = await this.downloadFiles(projectDto)
-    console.log('filed?', file)
+
     const zipFile = 'master.zip'
-    console.log('filed url?', file.url)
     const fileUrl = file.url
 
     await this.writeCsvToMaster(fileUrl, zipFile)
@@ -169,7 +167,7 @@ class ProjectsService {
   }
 
   private async installSrcml(): Promise<void> {
-    console.log('installsrcml')
+    console.log('not installsrcml')
 
     return new Promise(async response => {
       setTimeout(() => {
