@@ -37,6 +37,10 @@ class ProjectsService {
     // await this.downloadSrcml()
     // await this.installSrcml()
 
+    await actionExec('ls')
+    await actionExec('pwd')
+    await actionExec('pip show pandas')
+    await actionExec('srcml')
     await this.convertToSrcml()
 
     const tag = '000i'
