@@ -30,10 +30,10 @@ jobs:
         run: |
           ls
 
-      # - name: Instalação de Dependências Python
-      #   run: |
-      #     pip install -r requirements.txt
+      - name: Instalação de Dependências Python
+        run: |
+          pip install -r requirements.txt
 
-      # - name: Verificar dependências instaladas
-      #   run: |
-      #     pip show pandas
+      - name: Verificar dependências instaladas
+        run: |
+          pip show pandas
