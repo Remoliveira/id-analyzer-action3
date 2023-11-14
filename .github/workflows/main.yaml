@@ -24,15 +24,14 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Ioi
+      - name: Copy files
         run: |
+          ls
+          mkdir temp
+          mv * temp/
           ls
 
       - name: Instalação de Dependências Python
         run: |
           pip install pandas
           pip install gensim
-
-      - name: Verificar dependências instaladas
-        run: |
-          pip show pandas

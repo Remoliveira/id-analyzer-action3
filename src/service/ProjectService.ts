@@ -46,7 +46,7 @@ class ProjectsService {
     await actionExec('srcml')
     await this.convertToSrcml()
 
-    const tag = '000oi'
+    const tag = '000oii'
 
     await this.extractIdentifiers(tag)
 
