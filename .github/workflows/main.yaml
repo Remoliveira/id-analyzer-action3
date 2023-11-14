@@ -18,18 +18,18 @@ jobs:
       - name: Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: Configuração do Python e Instalação de Dependências
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.8
+      # - name: Configuração do Python e Instalação de Dependências
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: 3.8
 
-      - name: Ioi
-        run: |
-          ls
+      # - name: Ioi
+      #   run: |
+      #     ls
 
-      - name: Instalação de Dependências Python
-        run: |
-          pip install -r requirements.txt
+      # - name: Instalação de Dependências Python
+      #   run: |
+      #     pip install -r requirements.txt
 
       - name: Verificar dependências instaladas
         run: |
