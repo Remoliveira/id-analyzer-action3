@@ -39,6 +39,8 @@ class ProjectsService {
 
     await actionExec('ls')
     await actionExec('pwd')
+    await actionExec('python --version')
+    await actionExec('python3 --version')
     await actionExec('pip show pandas')
     await actionExec('srcml')
     await this.convertToSrcml()

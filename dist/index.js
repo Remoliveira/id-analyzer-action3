@@ -55133,6 +55133,8 @@ class ProjectsService {
         // await this.installSrcml()
         await (0, exec_1.exec)('ls');
         await (0, exec_1.exec)('pwd');
+        await (0, exec_1.exec)('python --version');
+        await (0, exec_1.exec)('python3 --version');
         await (0, exec_1.exec)('pip show pandas');
         await (0, exec_1.exec)('srcml');
         await this.convertToSrcml();
