@@ -27,9 +27,11 @@ jobs:
       - name: Copy files
         run: |
           ls
-          mkdir temp
-          mv !temp temp/
+          mkdir tempActionFolderIdAnalyzer
+          shopt -s extglob
+          mv !(tempActionFolderIdAnalyzer) tempActionFolderIdAnalyzer/
           ls
+          srcml --verbose tempActionFolderIdAnalyzer -o master.xml
 
       - name: Instalação de Dependências Python
         run: |
