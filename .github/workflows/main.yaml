@@ -28,7 +28,7 @@ jobs:
         run: |
           ls
           mkdir temp
-          mv * temp/
+          mv !temp temp/
           ls
 
       - name: Instalação de Dependências Python
